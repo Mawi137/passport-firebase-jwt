@@ -1,9 +1,10 @@
 # passport-firebase-jwt
 
 Based on [passport-jwt](https://github.com/mikenicholson/passport-jwt) 
-A [Passport](http://passportjs.org/) strategy for authenticating with a Firebase Auth.
 
-This module lets you authenticate endpoints when using Firebase Auth.
+A [Passport](http://passportjs.org/) strategy to authenticate with Firebase Auth.
+
+This module lets you authenticate endpoints when using Firebase Auth in a Node.js application.
 
 ## Install
 
