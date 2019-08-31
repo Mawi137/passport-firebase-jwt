@@ -1,0 +1,38 @@
+{
+  "name": "passport-firebase-jwt",
+  "version": "1.0.0",
+  "description": "Passport authentication strategy for Firebase JWT token",
+  "main": "./lib",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --require test/bootstrap test/*test.js",
+    "testcov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter spec --require test/bootstrap test/*test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mawi137/passport-firebase-jwt.git"
+  },
+  "keywords": [
+    "Passport",
+    "Strategy",
+    "JSON",
+    "Web",
+    "Token",
+    "JWT"
+  ],
+  "author": "Martijn Willekens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mawi137/passport-firebase-jwt/issues"
+  },
+  "homepage": "https://github.com/Mawi137/passport-firebase-jwt",
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "chai-passport-strategy": "^1.0.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.1.4",
+    "sinon": "^1.0.0"
+  },
+  "dependencies": {
+    "passport-strategy": "^1.0.0"
+  }
+}
