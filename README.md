@@ -22,7 +22,7 @@ import { Strategy, ExtractJwt } from 'passport-firebase-jwt';
 import { auth } from 'firebase-admin';
 
 @Injectable()
-export class FirebaseAuthStrategy extends PassportStrategy(Strategy) {
+export class FirebaseAuthStrategy extends PassportStrategy(Strategy, 'firebase') {
 
     constructor() {
         super({
