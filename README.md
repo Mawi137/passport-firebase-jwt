@@ -14,6 +14,7 @@ This module lets you authenticate endpoints when using Firebase Auth in a Node.j
 
 NestJS TypeScript usage example:
 
+`firebase.strategy.ts`
 ```ts
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -37,6 +38,61 @@ export class FirebaseAuthStrategy extends PassportStrategy(Strategy) {
                 throw new UnauthorizedException();
             });
     }
+}
+```
+
+`firebase-auth.guard.ts`
+```ts
+import {AuthGuard} from "@nestjs/passport";
+
+export class FirebaseAuthGuard extends AuthGuard('firebase') {
+}
+```
+
+`auth.module.ts`
+```ts
+@Module({
+    imports: [PassportModule],
+    providers: [FirebaseAuthStrategy, FirebaseAuthGuard],
+    exports: [FirebaseAuthStrategy, FirebaseAuthGuard],
+    controllers: [],
+})
+export class AuthModule {}
+```
+
+`app.module.ts`
+```ts
+import {Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
+import {AuthModule} from './auth/auth.module';
+
+
+@Module({
+    imports: [
+        AuthModule
+    ],
+    controllers: [AppController],
+    providers: [AppService],
+})
+export class AppModule {}
+```
+
+`app.controller.ts`
+```
+import {Controller, Get, UseGuards} from '@nestjs/common';
+import {AppService} from './app.service';
+import {FirebaseAuthGuard} from "./auth/firebase-auth.guard";
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {  }
+
+  @Get()
+  @UseGuards(FirebaseAuthGuard)
+  getHello(): string {
+    return this.appService.getHello();
+  }
 }
 ```
 
