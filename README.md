@@ -24,14 +24,14 @@ import { auth } from 'firebase-admin';
 @Injectable()
 export class FirebaseAuthStrategy extends PassportStrategy(Strategy, 'firebase') {
 
-    constructor() {
+    constructor(@Inject("admin.Auth") private readonly auth: admin.auth.Auth) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
         });
     }
 
     validate(token) {
-        return auth()
+        return this.auth
             .verifyIdToken(token, true)
             .catch((err) => {
                 console.log(err);
@@ -53,7 +53,10 @@ export class FirebaseAuthGuard extends AuthGuard('firebase') {
 ```ts
 @Module({
     imports: [PassportModule],
-    providers: [FirebaseAuthStrategy, FirebaseAuthGuard],
+    providers: [FirebaseAuthStrategy, FirebaseAuthGuard, {
+        provide: "admin.Auth",
+        useFactory: () => {return admin.initializeApp().auth()}
+    }],
     exports: [FirebaseAuthStrategy, FirebaseAuthGuard],
     controllers: [],
 })
