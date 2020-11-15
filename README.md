@@ -16,6 +16,25 @@ NestJS TypeScript usage example:
 
 Strategy name is: `firebase-jwt`.
 
+#### index.ts
+Make sure firebase is initialized before starting NestJs
+```ts
+import { credential, initializeApp } from 'firebase-admin';
+import * as express from 'express';
+import * as serviceAccount from './serviceAccountKey.json';
+
+const config = {
+    apiKey: '***',
+    authDomain: '***.firebaseapp.com',
+    databaseURL: 'https://***.firebaseio.com',
+    projectId: '***',
+    storageBucket: '***.appspot.com',
+    messagingSenderId: '***',
+    credential: credential.cert(***)
+};
+initializeApp(config);
+```
+
 #### firebase-auth.strategy.ts
 ```ts
 import { PassportStrategy } from '@nestjs/passport';
