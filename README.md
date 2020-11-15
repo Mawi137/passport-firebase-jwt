@@ -16,7 +16,7 @@ NestJS TypeScript usage example:
 
 Strategy name is: `firebase-jwt`.
 
-firebase-auth.strategy.ts
+#### firebase-auth.strategy.ts
 ```ts
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -43,8 +43,12 @@ export class FirebaseAuthStrategy extends PassportStrategy(Strategy) {
 }
 ```
 
-auth.module.ts
+#### auth.module.ts
 ```ts
+import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
+import { FirebaseAuthStrategy } from './firebase-auth.strategy';
+
 @Module({
     imports: [
         PassportModule.register({ defaultStrategy: 'firebase-jwt' })
