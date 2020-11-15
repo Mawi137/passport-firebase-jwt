@@ -14,6 +14,9 @@ This module lets you authenticate endpoints when using Firebase Auth in a Node.j
 
 NestJS TypeScript usage example:
 
+Strategy name is: `firebase-jwt`.
+
+firebase-auth.strategy.ts
 ```ts
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -38,6 +41,22 @@ export class FirebaseAuthStrategy extends PassportStrategy(Strategy) {
             });
     }
 }
+```
+
+auth.module.ts
+```ts
+@Module({
+    imports: [
+        PassportModule.register({ defaultStrategy: 'firebase-jwt' })
+    ],
+    providers: [
+        FirebaseAuthStrategy
+    ],
+    exports: [
+        PassportModule
+    ]
+})
+export class AuthModule {}
 ```
 
 ### Extracting the JWT from the request
