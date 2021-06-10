@@ -30,7 +30,8 @@
     "chai-passport-strategy": "^1.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^6.1.4",
-    "sinon": "^1.0.0"
+    "sinon": "^1.0.0",
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "passport-strategy": "^1.0.0"
