@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Passport authentication strategy for Firebase JWT token",
   "main": "./lib",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec --require test/bootstrap test/*test.js",
     "testcov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter spec --require test/bootstrap test/*test.js"
