@@ -4,6 +4,7 @@ export = FirebaseJwtStrategy;
  *
  * @param options
  *          jwtFromRequest: (REQUIRED) Function that accepts a request as the only parameter and returns the either JWT as a string or null
+ *          passReqToCallback: If true the verify callback will be called with args (request, jwt_payload, done_callback).
  * @param verify - Verify callback with args (jwt_payload, done_callback) if passReqToCallback is false,
  *                 (request, jwt_payload, done_callback) if true.
  */
@@ -14,6 +15,7 @@ declare class FirebaseJwtStrategy {
      *
      * @param options
      *          jwtFromRequest: (REQUIRED) Function that accepts a request as the only parameter and returns the either JWT as a string or null
+     *          passReqToCallback: If true the verify callback will be called with args (request, jwt_payload, done_callback).
      * @param verify - Verify callback with args (jwt_payload, done_callback) if passReqToCallback is false,
      *                 (request, jwt_payload, done_callback) if true.
      */
@@ -21,6 +23,7 @@ declare class FirebaseJwtStrategy {
     name: string;
     _jwtFromRequest: any;
     _verify: any;
+    _passReqToCallback: any;
     /**
      * Authenticate request based on JWT obtained from header or post body
      */

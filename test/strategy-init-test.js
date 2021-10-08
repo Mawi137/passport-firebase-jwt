@@ -1,7 +1,7 @@
 var Strategy = require('../lib/strategy');
 
 describe('Strategy', function() {
-    var strategy = new Strategy({jwtFromRequest: function(){}, secretOrKey: 'secret'}, function() {});
+    var strategy = new Strategy({jwtFromRequest: function(){}, secretOrKey: 'secret', passReqToCallback: false}, function() {});
 
     it('should be named jwt', function() {
         expect(strategy.name).to.equal('firebase-jwt');
